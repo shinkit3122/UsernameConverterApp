@@ -3,12 +3,14 @@ frontend:
   phases:
     preBuild:
       commands:
-        - npm ci
+        - pwd
+        - ls -la             # ← ここで package-lock.json が見えるはず
+        - npm ci             # ここで失敗するならファイルが無い/別ディレクトリ
     build:
       commands:
         - npm run build
   artifacts:
-    baseDirectory: build       # ← ここを build に
+    baseDirectory: build
     files:
       - '**/*'
   cache:
